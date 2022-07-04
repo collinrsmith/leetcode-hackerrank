@@ -1,0 +1,50 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    times = s[:8]
+    dayNight = s[8:]
+    hh, mm, ss = times.split(":")
+    hh = int(hh)
+    
+    # Midnight = 00, single digit AM hours have trailing zero
+    if dayNight == "AM":
+        if hh == 12:
+            hh = str("00")
+        elif hh >= 10:
+            hh = str(hh)
+        else:
+            hh = "0" + str(hh)
+        return f"{hh}:{mm}:{ss}"
+       
+    # Noon = 12:00pm, PM hours are 12-hour time + 12 (e.g. 1:00pm -> 13:00)
+    else:
+        if hh == 12:
+            hh = str(hh)
+        else:
+            hh = str(hh + 12)
+        return f"{hh}:{mm}:{ss}"
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
