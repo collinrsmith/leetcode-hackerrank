@@ -15,6 +15,8 @@ import sys
 
 def lonelyinteger(a):
     # Write your code here
+    
+    # return the number that occurs only once
     for int in range(len(a)):
         if a.count(a[int]) <= 1:
             return a[int]
