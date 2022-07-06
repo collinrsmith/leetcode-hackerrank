@@ -1,0 +1,49 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'gradingStudents' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts INTEGER_ARRAY grades as parameter.
+#
+
+def gradingStudents(grades):
+    if (grades == None) or (len(grades) < 1 or len(grades) > 100):
+        return 0
+    
+    # Grade rounds up to nearest multiple of 5 if within 2 digits
+    # Failing grade of n < 40 then becomes n < 38
+    for i in range(len(grades)):
+        difference = 5 - (grades[i] % 5)
+        if grades[i] < 38:
+            print(f"Skipping: {grades[i]}")
+            continue
+        elif (difference < 3):
+            print(f"Adding {difference} to {grades[i]}")
+            grades[i] += difference
+            
+    return grades
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    grades_count = int(input().strip())
+
+    grades = []
+
+    for _ in range(grades_count):
+        grades_item = int(input().strip())
+        grades.append(grades_item)
+
+    result = gradingStudents(grades)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
