@@ -1,0 +1,48 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'countingValleys' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER steps
+#  2. STRING path
+#
+
+def countingValleys(steps, path):
+    # Write your code here
+    
+    # Sea level
+    level, numValleys = 0, 0
+    
+    # Path is string of up ("U") and down ("D") characters
+    for direction in path:
+    
+        # If we step up to sea level 0, we have exited one valley
+        if direction == "U":
+            level += 1
+            if level == 0:
+                numValleys += 1
+        else:
+            level -= 1
+    
+    return numValleys
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    steps = int(input().strip())
+
+    path = input()
+
+    result = countingValleys(steps, path)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
