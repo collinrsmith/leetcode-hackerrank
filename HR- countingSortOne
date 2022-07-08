@@ -1,0 +1,41 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'countingSort' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts INTEGER_ARRAY arr as parameter.
+#
+
+def countingSort(arr):
+    # Write your code here
+    
+    # Size 100 array of zeroes for problem descrip.
+    sorted = [0] * 100
+    
+    # Count each occurence of given elems in sorted
+    # e.g., if elem == 3: sorted[3] ++
+    for elem in arr:
+        sorted[elem] += 1
+    
+    return sorted
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = countingSort(arr)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
