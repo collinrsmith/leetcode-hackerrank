@@ -1,0 +1,42 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'pangrams' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def pangrams(s):
+    # Write your code here
+    if (s == None) or (len(s) < 1):
+        return 0
+    
+    results = {}
+    
+    # Pangrams contain every letter in the alphabet
+    # Build dict to find every letter
+    for letter in s.lower():
+        if (letter.isalpha()) and not (results.get(letter)):
+            results[letter] = letter
+    
+    # dict will equal length of alphabet if it is a pangram
+    if len(results) == 26: return 'pangram'
+    else: return 'not pangram'
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = pangrams(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
