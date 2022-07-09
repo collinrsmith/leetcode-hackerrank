@@ -1,0 +1,40 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'marsExploration' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts STRING s as parameter.
+#
+
+def marsExploration(s):
+    # Write your code here
+    if (s == None) or (len(s) < 3):
+        return 0
+    
+    count = 0
+    
+    # Count each discrepancy in SOS signal
+    for n in range(0, len(s), 3):
+        if s[n] != 'S': count += 1
+        if s[n + 1] != 'O': count += 1
+        if s[n + 2] != 'S': count += 1
+            
+    return count
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = marsExploration(s)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
