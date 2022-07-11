@@ -1,0 +1,14 @@
+from collections import Counter
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        if (nums == None) or (len(nums) < 1):
+            return False
+
+        seenNums = Counter(nums)
+        
+        # check number of instances for most common element
+        if seenNums.most_common(1)[0][1] > 1:
+            return True
+        else:
+            return False
