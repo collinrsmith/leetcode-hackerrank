@@ -1,0 +1,19 @@
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        
+        wordS = {}
+        wordT = {}
+        
+        # Fill dicts with count of each letter
+        for i in range(len(s)):
+            wordS[s[i]] = 1 + wordS.get(s[i], 0)
+            wordT[t[i]] = 1 + wordT.get(t[i], 0)
+        
+        # Compare letter counts
+        for i in wordS:
+            if wordS[i] != wordT.get(i, 0):
+                return False
+            
+        return True
