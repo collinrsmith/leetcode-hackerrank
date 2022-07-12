@@ -20,6 +20,7 @@ def matchingStrings(strings, queries):
     ans = []
     
     # check each query against each string, add number of occurences to return list
+    # Exponential, hashmaps to reduce time complexity?
     for query in queries:
         ans.append(strings.count(query))
         
