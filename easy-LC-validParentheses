@@ -1,0 +1,29 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if s == None:
+            return False
+        
+        stack = []
+        matchingPairs = {')': '(',
+                         ']': '[',
+                         '}': '{'
+        }
+        # bracket -> b
+        for b in s:
+            if not stack:
+                stack.append(b)
+                continue
+                
+            # b is closing bracket
+            if b in matchingPairs:
+                
+                # check if b closes an opening bracket
+                if stack[-1] == matchingPairs[b]:
+                    stack.pop()
+                else:
+                    return False
+                    
+            else:
+                stack.append(b)
+            
+        return not stack
