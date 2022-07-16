@@ -26,7 +26,7 @@ def flippingMatrix(matrix):
     for i in range(n):
         for j in range(n):
             
-            # e.g. for top left corner, check top right,
+            # e.g. for top left corner: check top right,
             # bottom left and bottom right corners for max value
             sum += max(matrix[i][j], matrix[i][m - 1 - j],
             matrix[m - 1 - i][j], matrix[m - 1 - i][m - 1 - j])
