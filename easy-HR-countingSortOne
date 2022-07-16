@@ -19,8 +19,7 @@ def countingSort(arr):
     # Size 100 array of zeroes for problem descrip.
     sorted = [0] * 100
     
-    # Count each occurence of given elems in sorted
-    # e.g., if elem == 3: sorted[3] ++
+    # Count each occurence of each num
     for elem in arr:
         sorted[elem] += 1
     
