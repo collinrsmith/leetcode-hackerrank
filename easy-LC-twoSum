@@ -1,0 +1,17 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        if nums == None or len(nums) < 2:
+            return []
+        
+        hashmap = {}
+        
+        for i in range(len(nums)):
+            curr = nums[i]
+            comp = target - curr # complement
+            
+            if comp in hashmap:
+                return [i, hashmap[comp]]
+            
+            hashmap[curr] = i
+        
+        return []
