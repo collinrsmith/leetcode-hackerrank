@@ -1,0 +1,19 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        # low space requirement, but less efficient time comp
+        
+        s_length = len(s)
+        pointL, pointR = 0, s_length - 1
+        
+        while pointL < pointR:
+            while pointL < pointR and not s[pointR].isalnum():
+                pointR -= 1
+            while pointL < pointR and not s[pointL].isalnum():
+                pointL += 1
+            if s[pointL].lower() != s[pointR].lower():
+                return False
+            
+            pointR -= 1
+            pointL += 1
+        
+        return True
