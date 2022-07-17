@@ -12,6 +12,19 @@ import sys
 # The function is expected to return an INTEGER.
 # The function accepts 2D_INTEGER_ARRAY matrix as parameter.
 #
+# for an upperleft submatrix, find the max sum possible by
+# flipping rows and columns to reposition values in the submatrix
+#
+# rows and columns can be flipped an infinite number of times,
+# so provided a cell X reflects or opposes a cell Y in the submatrix,
+# X can eventually replace Y
+#
+# e.g. for top left cell of matrix: check top right,
+# bottom left and bottom right cells
+#
+# thus, for each cell in the submatrix, check reflected/opposite cells in
+# other quadrants and select the maximums
+#
 
 def flippingMatrix(matrix):
     if (matrix == None) or (len(matrix) % 2 != 0):
@@ -21,13 +34,8 @@ def flippingMatrix(matrix):
     m = len(matrix)
     n = m // 2
     
-    # step through upper left quadrant, check elements mirrored in
-    # other quadrants to find max sum
     for i in range(n):
         for j in range(n):
-            
-            # e.g. for top left corner: check top right,
-            # bottom left and bottom right corners for max value
             sum += max(matrix[i][j], matrix[i][m - 1 - j],
             matrix[m - 1 - i][j], matrix[m - 1 - i][m - 1 - j])
             
