@@ -1,0 +1,33 @@
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+    
+        # recursive DFS, only works if allowed to modify input
+        # likely better to implement stack or queue
+        
+        if not grid or not grid[0]:
+            return 0
+        
+        rows = len(grid)
+        cols = len(grid[0])
+        islands = 0
+        
+        def findLand(i, j):
+            if i < 0 or i >= rows or j < 0 or j >= cols or grid[i][j] == '0':
+                return
+            
+            grid[i][j] = '0'
+            directions = [(1,0), (-1,0), (0, 1), (0, -1)]
+            
+            for dir in directions:
+                new_i, new_j = i + dir[0], j + dir[1]
+                findLand(new_i, new_j)
+            
+            return
+        
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == '1':
+                    findLand(i, j)
+                    islands += 1
+                    
+        return islands
