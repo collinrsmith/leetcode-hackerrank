@@ -1,0 +1,10 @@
+class Solution:
+    def runningSum(self, nums: List[int]) -> List[int]:
+        answer = [0] * len(nums)
+        
+        # Each element in the return array will contain the value
+        # of nums at [i], plus the sum of all previous elements
+        
+        for idx, val in enumerate(nums):
+            answer[idx] += (answer[idx - 1] + val)
+        return answer
