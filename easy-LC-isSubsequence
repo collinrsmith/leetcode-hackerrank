@@ -1,0 +1,12 @@
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        length_s = len(s)
+        point_s = 0
+        
+        # compare in order to check if s is a subsequence of t
+        
+        for letter in t:
+            if point_s < length_s and s[point_s] == letter:
+                point_s += 1
+                
+        return point_s == length_s
