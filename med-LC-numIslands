@@ -1,8 +1,10 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
     
-        # recursive DFS, only works if allowed to modify input
-        # likely better to implement stack or queue
+        # only works if allowed to modify input, recursive DFS
+        #
+        # if input is not modified, could instead add key value
+        # pairs, (coordinates, True/False), to denote visited land
         
         if not grid or not grid[0]:
             return 0
