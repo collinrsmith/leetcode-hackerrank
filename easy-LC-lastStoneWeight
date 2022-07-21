@@ -1,0 +1,18 @@
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        if not stones:
+            return 0
+        
+        # represent max heap by negating each value and placing in min heap
+        pile = [-val for val in stones]
+        heapq.heapify(pile)
+        
+        # bash stones together, replacing them with the difference in weight
+        while len(pile) >  1 and pile[0] != 0:
+            self.bashStones(pile)
+        
+        # convert return value back to positive
+        return abs(pile[0])
+    
+    def bashStones(self, pile):
+            heapq.heappush(pile, heapq.heappop(pile) -  heapq.heappop(pile))
