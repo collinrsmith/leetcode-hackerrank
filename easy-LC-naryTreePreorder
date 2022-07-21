@@ -1,0 +1,30 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+# leetcode.com/problems/n-ary-tree-preorder-traversal/
+
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        answer = []
+                    
+        self.DFS(root, answer)
+        
+        return answer
+    
+    def DFS(self, root_node, answer):
+        # check if null
+        if not root_node:
+            return
+        
+        # add to preorder traversal list
+        answer.append(root_node.val)
+        
+        # add children to list if they exist
+        if root_node.children:
+            for child in root_node.children:
+                self.DFS(child, answer)
