@@ -1,0 +1,26 @@
+# leetcode.com/problems/best-time-to-buy-and-sell-stock
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # pointers: L -> buying, R -> selling
+        left, right = 0, 1
+        # base case
+        max_profit = 0
+        
+        # checking every day's price
+        while right < len(prices):
+            
+            # if sell price is greater, new potential profit is calculated
+            if prices[left] < prices[right]:
+                curr_profit = prices[right] - prices[left]
+                max_profit = max(max_profit, curr_profit)
+            
+            # if sell price not greater, set new minimum buy price
+            else:
+                left = right
+                
+            # increment to check future price
+            right += 1
+            
+        return max_profit
+            
