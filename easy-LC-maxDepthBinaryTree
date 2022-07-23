@@ -1,0 +1,24 @@
+# leetcode.com/problems/maximum-depth-of-binary-tree/
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        # null roots return 0 anyway, so these aren't fully necessary
+        # but helped me visualize what is going on
+        temp_depth_L = temp_depth_R = 0
+        
+        # traverse left and right paths to find deepest level
+        if root.left:
+            temp_depth_L += self.maxDepth(root.left)
+        if root.right:
+            temp_depth_R += self.maxDepth(root.right)
+        
+        return 1 + max(temp_depth_L, temp_depth_R)
