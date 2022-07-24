@@ -1,0 +1,36 @@
+# leetcode.com/problems/valid-sudoku/
+
+from collections import defaultdict
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # hashsets to track duplicates in each row/col
+        row_set = defaultdict(set)
+        col_set = defaultdict(set)
+        # to track submatrices
+        square_set = defaultdict(set)
+        
+        # 9x9 board by default, but additional sizes (perfect squares) can be included by
+        # calculating the length of the submatrix -> 9x9 submatrix is sqrt(9) x sqrt(9)
+        main_len = len(board)
+        sub_len = math.pow(main_len, 0.5)
+        
+        for row in range(main_len):
+            for col in range(main_len):
+                if board[row][col] == ".":
+                    continue
+                
+                # check for duplication in the row, col, and submatrix
+                if (
+                    board[row][col] in row_set[row] or
+                    board[row][col] in col_set[col] or
+                    board[row][col] in square_set[(row // sub_len, col // sub_len)]
+                ):
+                    return False
+                
+                # otherwise add to each set
+                row_set[row].add(board[row][col])
+                col_set[col].add(board[row][col])
+                square_set[(row // sub_len, col // sub_len)].add(board[row][col])
+                
+        return True
