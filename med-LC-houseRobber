@@ -1,0 +1,32 @@
+# leetcode.com/problems/house-robber/submissions/
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+            
+        """
+        Time Complexity: O(n * m)
+        Space Complexity: O(n)
+        """
+        
+        # store the max profit computed at each house
+        max_values = dict()
+        
+        # iterate over each house
+        for idx, house in enumerate(nums):
+            
+            # find max profit between houses not adjacent to current house
+            prev_max = 0
+            for m in range(len(max_values) - 1):
+                prev_max = max(prev_max, max_values[m])
+            
+            # max profit at current house = current house's value + non-adjacent max profit
+            max_values[idx] = house + prev_max
+        
+        # return the highest computed profit
+        answer = 0
+        for val in range(len(max_values)):
+            answer = max(answer, max_values[val])
+            
+        return answer
