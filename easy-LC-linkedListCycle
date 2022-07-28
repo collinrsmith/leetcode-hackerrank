@@ -1,0 +1,31 @@
+# leetcode.com/problems/linked-list-cycle
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        # no cycle if list empty or only a single element
+        if not head or not head.next:
+            return False
+        """
+        Time Complexity -> O(n), algorithm touches n nodes in list, constant amount of work
+        Space Complexity -> O(n), stores roughly n nodes in set
+        can improve space with slow/fast pointers
+        """
+        
+        seen = set()
+        seen.add(head)
+        nxt = head.next
+        
+        # visit each node, check if it points to a previously seen node
+        while nxt:
+            seen.add(nxt)
+            if nxt.next in seen:
+                return True
+            else:
+                nxt = nxt.next
+        return False
