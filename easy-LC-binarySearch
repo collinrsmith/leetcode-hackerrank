@@ -1,0 +1,27 @@
+# leetcode.com/problems/binary-search/
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        """
+        Time Complexity -> O(logn)
+        Space Complexity -> O(1)
+        """
+        
+        l, r = 0, len(nums) - 1
+        
+        # loop until left pointer crosses right
+        while l <= r:
+            middle = (l + r) // 2
+            
+            # check if the middle element matches the target
+            if nums[middle] == target:
+                return middle
+            # if the middle is too low, discard left half from consideration
+            elif nums[middle] < target:
+                l = middle + 1
+            # if too high, discard right half
+            else:
+                r = middle - 1
+
+        # if match not found
+        return -1
