@@ -1,0 +1,21 @@
+# leetcode.com/problems/daily-temperatures/
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        # O(n) time and space complexity
+        
+        stack = []
+        answer = [0] * len(temperatures)
+        
+        for idx, temp in enumerate(temperatures):
+            
+            # compare current temp to the top of non-empty stack
+            while stack and stack[-1][1] < temp:
+            
+                # difference in index = num days before higher temp
+                stack_idx, stack_temp = stack.pop()
+                answer[stack_idx] = idx - stack_idx
+                
+            stack.append([idx, temp])
+            
+        return answer
